@@ -4,8 +4,11 @@ class WhatsAppController
     {
         console.log('WhatsAppController ok')
 
+
+        //metodos
         this.elementesPrototype()
         this.loadElements()
+        this.initEvents()
     }
 
     //controle dos elementos (liga/desliga)
@@ -32,13 +35,13 @@ class WhatsAppController
         Element.prototype.show = function()
         {
             this.style.display = 'block'
-            
+
         }
 
         Element.prototype.toggle = function()
         {
             this.style.display = (this.style.display === 'none') ? 'block' : 'none'
-            
+
         }
 
         //evento de click
@@ -48,8 +51,53 @@ class WhatsAppController
             {
                 this.addEventListener(event, fn)
             })
-            
-            
+
         }
+
+        //mudando o css
+        Element.prototype.css = function(styles)
+        {
+            for (let name in styles)
+            {
+                this.style[name] = styles[name]
+            }
+        }
+
+        // "CRUD" de classes
+        Element.prototype.addClasse = function(name)
+        {
+            this.classList.add(name)
+        }
+
+        Element.prototype.removeClasse = function(name)
+        {
+            this.classList.remove(name)
+        }
+
+        Element.prototype.toggleClasse = function(name)
+        {
+            this.classList.toggle(name)
+        }
+
+        Element.prototype.hasClasse = function(name)
+        {
+            this.classList.contains(name)
+        }
+
+        
     }
-}   
+
+    //gerindo eventos(foto, contato)
+    initEvents()
+    {
+        this.el.myPhoto.on('click', e=>
+        {
+            this.el.panelAddProfile.show()
+        })
+
+        this.el.btnNewContact.on('click', e=>
+        {
+            this.el.panelAddContact.addClass('open')
+        })
+    }
+}
