@@ -41,6 +41,7 @@ class WhatsAppController
             
         }
 
+        //evento de click
         Element.prototype.on = function(events, fn)
         {
             events.split(' ').forEach(event=>
